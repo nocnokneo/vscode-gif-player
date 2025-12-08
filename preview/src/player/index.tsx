@@ -50,16 +50,12 @@ export function GifPlayer(props: GifPlayerProps) {
                     }
                 case 'nextFrame':
                     {
-                        if (stateRef.current?.playing) {
-                            props.dispatch(new actions.TogglePlay(false));
-                        }
+                        props.dispatch(new actions.TogglePlay(false));
                         return props.dispatch(new actions.SetFrame((stateRef.current?.frame ?? 0) + 1));
                     }
                 case 'previousFrame':
                     {
-                        if (stateRef.current?.playing) {
-                            props.dispatch(new actions.TogglePlay(false));
-                        }
+                        props.dispatch(new actions.TogglePlay(false));
                         return props.dispatch(new actions.SetFrame((stateRef.current?.frame ?? 0) - 1));
                     }
             }
