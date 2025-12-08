@@ -62,15 +62,18 @@
 		"keybindings": [
 			{
 				"command": "gifPlayer.togglePlay",
-				"key": "space"
+				"key": "space",
+				"when": "gifPlayerActive && editorFocus"
 			},
 			{
 				"command": "gifPlayer.nextFrame",
-				"key": "right"
+				"key": "right",
+				"when": "gifPlayerActive && editorFocus"
 			},
 			{
 				"command": "gifPlayer.previousFrame",
-				"key": "left"
+				"key": "left",
+				"when": "gifPlayerActive && editorFocus"
 			}
 		],
 		"menus": {
