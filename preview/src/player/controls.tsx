@@ -65,6 +65,9 @@ export function Controls(props: {
                         props.updateFrame(frame);
                     }}
                     onMouseDown={e => {
+                        if (props.playing) {
+                            props.updatePlaying(false);
+                        }
                         setState({ ...state, isDragging: true });
                     }} />
 
