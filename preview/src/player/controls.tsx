@@ -22,6 +22,38 @@ export function Controls(props: {
     const stateRef = useRef<ControlsState>();
     stateRef.current = state;
 
+    const propsRef = useRef(props);
+    propsRef.current = props;
+
+    const timerRef = useRef<any>(null);
+    const intervalRef = useRef<any>(null);
+
+    const stopRepeating = () => {
+        if (timerRef.current) {clearTimeout(timerRef.current);}
+        if (intervalRef.current) {clearInterval(intervalRef.current);}
+        timerRef.current = null;
+        intervalRef.current = null;
+    };
+
+    const startRepeating = (direction: 1 | -1) => {
+        stopRepeating();
+
+        if (propsRef.current.playing) {
+            propsRef.current.updatePlaying(false);
+        }
+
+        const tick = () => {
+            const nextFrame = propsRef.current.frame + direction;
+            propsRef.current.updateFrame(nextFrame);
+        };
+
+        tick();
+
+        timerRef.current = setTimeout(() => {
+            intervalRef.current = setInterval(tick, 50);
+        }, 300);
+    };
+
     useEffect(() => {
         const listener = () => {
             if (stateRef.current?.isDragging) {
@@ -100,10 +132,9 @@ export function Controls(props: {
                     style={{
                         marginRight: '1em',
                     }}
-                    onClick={() => {
-                        props.updatePlaying(false);
-                        props.updateFrame(props.frame - 1);
-                    }} />
+                    onMouseDown={() => startRepeating(-1)}
+                    onMouseUp={stopRepeating}
+                    onMouseLeave={stopRepeating} />
 
                 <ControlButton
                     className='playButton'
@@ -120,41 +151,48 @@ export function Controls(props: {
                     style={{
                         marginLeft: '1em',
                     }}
-                    onClick={() => {
-                        props.updatePlaying(false);
-                        props.updateFrame(props.frame + 1);
-                    }} />
+                    onMouseDown={() => startRepeating(1)}
+                    onMouseUp={stopRepeating}
+                    onMouseLeave={stopRepeating} />
             </div>
         </div>
     );
 }
 
 function ControlButton(props: {
+    className?: string,
     title: string,
-    className: string,
     icon: string,
     style?: any,
-    onClick: () => void,
+    onClick?: (e: any) => void,
+    onMouseDown?: (e: any) => void,
+    onMouseUp?: (e: any) => void,
+    onMouseLeave?: (e: any) => void,
 }) {
     return (
         <button
-            className={props.className}
+            className={'vscode-button ' + props.className}
             title={props.title}
             style={{
-                background: 'var(--vscode-input-background)',
-                margin: 0,
+                width: '24px',
+                height: '24px',
                 padding: 0,
                 border: 0,
+                outline: 0,
+                background: 'none',
+                color: 'var(--vscode-foreground)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 ...props.style
             }}
-            onClick={props.onClick}>
-            <div className={`codicon ${props.icon}`} style={{
-                color: 'var(--vscode-input-foreground)',
-                width: '32px',
-                height: '24px',
-                lineHeight: '24px',
-
-            }} />
-        </button >
+            onClick={props.onClick}
+            onMouseDown={props.onMouseDown}
+            onMouseUp={props.onMouseUp}
+            onMouseLeave={props.onMouseLeave}
+        >
+            <i className={'codicon ' + props.icon} />
+        </button>
     );
 }
