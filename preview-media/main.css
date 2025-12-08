@@ -14,6 +14,13 @@ main {
 .frame-slider {
     -webkit-appearance: none;
     margin-bottom: 0.6em;
+    /* Remove default background so transparent track works */
+    background: transparent;
+}
+
+.frame-slider:focus {
+    /* Remove default focus outline */
+    outline: none;
 }
 
 .frame-slider::-webkit-slider-thumb {
@@ -23,15 +30,17 @@ main {
     width: 6px;
     background: #ffffff;
     cursor: pointer;
-    margin-top: -10px;
+    margin-top: 0;
 }
 
 .frame-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 4px;
+    /* Increase height to make it easier to click */
+    height: 20px;
     cursor: pointer;
-    background: var(--vscode-checkbox-foreground);
-    border: 0.5px solid var(--vscode-checkbox-border);
+    /* Simulate a thin track using a gradient, while keeping the actual element tall for the hit area */
+    background: linear-gradient(to bottom, transparent 0px, transparent 7px, var(--vscode-checkbox-border) 7px, var(--vscode-checkbox-border) 8px, var(--vscode-checkbox-foreground) 8px, var(--vscode-checkbox-foreground) 12px, var(--vscode-checkbox-border) 12px, var(--vscode-checkbox-border) 13px, transparent 13px, transparent 100%);
+    border: none;
 }
 
 @keyframes codicon-spin {
