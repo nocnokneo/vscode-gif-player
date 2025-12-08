@@ -94,7 +94,7 @@ export function Controls(props: {
             }}>
                 <ControlButton
                     className='previousButton'
-                    title={"Previous Frame"}
+                    title={'Previous Frame'}
                     icon={'codicon-debug-step-back'}
                     style={{
                         marginRight: '1em',
@@ -105,7 +105,7 @@ export function Controls(props: {
 
                 <ControlButton
                     className='playButton'
-                    title={props.playing ? "Pause" : "Play"}
+                    title={props.playing ? 'Pause' : 'Play'}
                     icon={props.playing ? 'codicon-play' : 'codicon-pause'}
                     onClick={() => {
                         props.updatePlaying(!props.playing);
@@ -113,7 +113,7 @@ export function Controls(props: {
 
                 <ControlButton
                     className='nextButton'
-                    title={"Next Frame"}
+                    title={'Next Frame'}
                     icon={'codicon-debug-step-over'}
                     style={{
                         marginLeft: '1em',
