@@ -107,8 +107,8 @@
 		"compile": "tsc -p ./",
 		"lint": "eslint src --ext ts ; eslint preview --ext ts",
 		"watch": "tsc -watch -p ./",
-		"build-preview": "cd preview ; webpack",
-		"build-preview:prod": "cd preview ; webpack --env.production"
+		"build-preview": "cd preview ; NODE_OPTIONS=--openssl-legacy-provider webpack",
+		"build-preview:prod": "cd preview ; NODE_OPTIONS=--openssl-legacy-provider webpack --env.production"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
