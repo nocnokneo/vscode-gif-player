@@ -100,6 +100,9 @@ export function Controls(props: {
                         marginRight: '1em',
                     }}
                     onClick={() => {
+                        if (props.playing) {
+                            props.updatePlaying(false);
+                        }
                         props.updateFrame(props.frame - 1);
                     }} />
 
@@ -119,6 +122,9 @@ export function Controls(props: {
                         marginLeft: '1em',
                     }}
                     onClick={() => {
+                        if (props.playing) {
+                            props.updatePlaying(false);
+                        }
                         props.updateFrame(props.frame + 1);
                     }} />
             </div>
