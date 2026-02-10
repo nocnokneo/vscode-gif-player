@@ -1,19 +1,19 @@
 {
-	"name": "gif-player",
-	"displayName": "Gif Player",
+	"name": "gif-player-plus",
+	"displayName": "Gif Player Plus",
 	"description": "Add a play/pause button and a scrubber for controlling gif playback.",
-	"publisher": "bierner",
-	"version": "0.0.3",
+	"publisher": "nocnokneo",
+	"version": "0.0.4",
 	"icon": "design/logo.png",
 	"galleryBanner": {
 		"color": "#353535",
 		"theme": "dark"
 	},
 	"repository": {
-		"url": "https://github.com/mattbierner/vscode-gif-player.git"
+		"url": "https://github.com/nocnokneo/vscode-gif-player.git"
 	},
 	"bugs": {
-		"url": "https://github.com/mattbierner/vscode-gif-player/issues"
+		"url": "https://github.com/nocnokneo/vscode-gif-player/issues"
 	},
 	"engines": {
 		"vscode": "^1.47.0"
